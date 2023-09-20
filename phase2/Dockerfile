@@ -26,3 +26,7 @@ COPY . /usr/src/app
 #   Here is the documentation for CMD if you need a reminder:
 #   https://docs.docker.com/engine/reference/builder/#cmd
 CMD ["/sbin/tini", "--", "node", "app.js"]
+
+# BONUS: add in a healthcheck!
+HEALTHCHECK --interval=5s --timeout=3s \
+CMD curl -f http://localhost:8081/ || exit 1

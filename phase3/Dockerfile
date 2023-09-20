@@ -34,3 +34,7 @@ COPY --from=build-stage /app/build /usr/share/nginx/html
 #    provided in this folder
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 # (No need to add a CMD because it's included in the base image)
+
+# BONUS: add in a healthcheck!
+HEALTHCHECK --interval=5s --timeout=3s \
+CMD curl -f http://localhost/ || exit 1
